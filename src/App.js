@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Checkout from './amazon-component/Checkout'; 
+import Header from './amazon-component/Header'; 
+import Signin from './amazon-component/Signin'; 
+import Home from './amazon-component/Home';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<Router>
+<Header/>
+  <Routes>
+    <Route path='/' element={<Home/>}  />
+    <Route path='/checkout' element={<Checkout/>}  />
+    <Route path='/signin' element={<Signin/>}  />
+  </Routes>
+</Router>
+
+
+</>   
   );
 }
 
