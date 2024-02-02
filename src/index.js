@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { StateProvider } from './amazon-component/StateProvider';
-import reducer, {initialState} from './amazon-component/reducer'
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode >
-  <StateProvider reducer={reducer} initialState={initialState}>
+  <React.StrictMode>
+    <Provider store={store}>
     <App />
-    </StateProvider>
+    </Provider>
   </React.StrictMode>
 );
 

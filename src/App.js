@@ -1,23 +1,19 @@
 import './App.css';
-import Checkout from './amazon-component/Checkout'; 
-import Header from './amazon-component/Header'; 
-import Signin from './amazon-component/Signin'; 
-import Home from './amazon-component/Home';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Home from './pages/Home';
+import SignUp from './pages/SignUp';
+import Checkout from './pages/Checkout';
+
+
 function App() {
   return (
-<>
-<Router>
-<Header/>
-  <Routes>
-    <Route path='/' element={<Home/>}  />
-    <Route path='/checkout' element={<Checkout/>}  />
-    <Route path='/signin' element={<Signin/>}  />
-  </Routes>
-</Router>
-
-
-</>   
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/signin' element={<SignUp />} />
+        <Route path='/checkout' element={<Checkout />} />
+      </Routes>
+    </Router>
   );
 }
 
