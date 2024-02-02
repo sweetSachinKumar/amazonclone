@@ -1,6 +1,8 @@
 import React from 'react'
 import bannerImg from './img/ban_ner.jpg'
 import ProductCard from './ProductCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../redux/slices/cartSlice'
 
 const Banner = () => {
     const imgStyle = {
@@ -8,6 +10,30 @@ const Banner = () => {
         WebkitMaskImage: "linear-gradient(186deg, #3a4394, #6b02fd0b)",
         maskImage: "linear-gradient(186deg, #3a4394, #6b02fd13)"
     }
+
+    const { cartItems } = useSelector(state => state.cart)
+    const dispatch = useDispatch()
+
+    const addToCarthandler = (data) => {
+        const { id, title, price, rating, image } = data;
+        const isExist = cartItems.find(item => item.id === id)
+        if (isExist) {
+            console.log(isExist)
+        }
+
+        const dataItem = { id, title, price, rating, image, amount: 1 }
+
+        dispatch(addToCart(dataItem))
+    }
+
+    const singleData = {
+        id: 7,
+        title: "MageGee Portable 60% Mechanical Gaming Keyboard, MK-Box LED Backlit Compact 68 Keys Mini Wired Office Keyboard",
+        price: 588,
+        rating: 5,
+        image: "https://m.media-amazon.com/images/I/617yPJ1t9AL._AC_SY310_.jpg"
+    }
+
     return (
         <>
             <div className='-mb-[150px]'>
@@ -64,39 +90,41 @@ const Banner = () => {
                     />
                 </div>
 
-                <div>
-                    <div className='z-30  m-2.5 sm:min-w-min min-w-[43%] w-full h-full'>
-                        <div className='flex flex-col p-2.5 h-full   items-center border-2  z-20  bg-white w-full' >
+                <div className='p-2.5'>
+                    <div className='z-30  sm:min-w-min min-w-[43%] w-full h-full'>
+                    <div className='flex flex-col p-2.5 h-full   items-center border-2  z-20  bg-white w-full' >
 
-                            <div className='  flex flex-col mb-3 justify-around '>
-                                <p className=" leading-normal mb-2      text-xs sm:text-sm md:text-base">       MageGee Portable 60% Mechanical Gaming Keyboard, MK-Box LED Backlit Compact 68 Keys Mini Wired Office Keyboard</p>
-                                <span> &#x20B9;  <span className='font-bold  text-xs sm:text-sm md:text-base '> 588 </span> </span>
-                                <div>
-                                    {
-                                        Array(5).fill().map((_, i) => <span key={i}>&#11088;</span>)
-                                    }
-                                </div>
-
-                            </div> 
-                            <img src="https://m.media-amazon.com/images/I/617yPJ1t9AL._AC_SY310_.jpg" className='h-full  md:max-w-[500px] mx-auto sm:w-7/12 w-10/12   object-contain' alt="/" />
-                            {/* </div> */}
+                        <div className='  flex flex-col mb-3 justify-around '>
+                            <p className=" leading-normal mb-2      text-xs sm:text-sm md:text-base">       MageGee Portable 60% Mechanical Gaming Keyboard, MK-Box LED Backlit Compact 68 Keys Mini Wired Office Keyboard</p>
+                            <span> &#x20B9;  <span className='font-bold  text-xs sm:text-sm md:text-base '> 588 </span> </span>
                             <div>
-                                <button style={{
-                                    backgroundColor: " #f0c15b",
-                                    border: "1px solid",
-                                    borderColor: "#a88734 #9c7e31 #845a29",
-                                    marginTop: "10px",
-                                    fontSize: "12px"
-
-                                }} onClick={() => { }} >Add to basket</button>
+                                {
+                                    Array(5).fill().map((_, i) => <span key={i}>&#11088;</span>)
+                                }
                             </div>
+
+                        </div>
+                        <img src="https://m.media-amazon.com/images/I/617yPJ1t9AL._AC_SY310_.jpg" className='h-full  md:max-w-[500px] mx-auto sm:w-7/12 w-10/12   object-contain' alt="/" />
+
+                        <div>
+                            <button style={{
+                                backgroundColor: " #f0c15b",
+                                border: "1px solid",
+                                borderColor: "#a88734 #9c7e31 #845a29",
+                                marginTop: "10px",
+                                fontSize: "12px"
+
+                            }} onClick={() => addToCarthandler(singleData)} >Add to basket</button>
                         </div>
                     </div>
-
+                </div>
                 </div>
 
-
             </div>
+
+        
+
+ 
 
         </>
     )
